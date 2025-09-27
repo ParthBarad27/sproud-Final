@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --color-background: #FEFEFE; /* pure white with warmth */
+    --color-foreground: #1F2937; /* near-black with blue undertones */
+    --color-border: #E5E7EB; /* neutral gray for functional separation */
+    --color-input: #F8FAFC; /* subtle blue-gray surface */
+    --color-ring: #2563EB; /* deep blue for focus rings */
+    
+    /* Card Colors */
+    --color-card: #FFFFFF; /* pure white */
+    --color-card-foreground: #1F2937; /* near-black with blue undertones */
+    --color-popover: #FFFFFF; /* pure white */
+    --color-popover-foreground: #1F2937; /* near-black with blue undertones */
+    
+    /* Muted Colors */
+    --color-muted: #F8FAFC; /* subtle blue-gray surface */
+    --color-muted-foreground: #6B7280; /* medium gray for hierarchy */
+    
+    /* Primary Colors */
+    --color-primary: #2563EB; /* deep blue for trust and stability */
+    --color-primary-foreground: #FFFFFF; /* white for contrast */
+    
+    /* Secondary Colors */
+    --color-secondary: #059669; /* calming green for growth and healing */
+    --color-secondary-foreground: #FFFFFF; /* white for contrast */
+    
+    /* Accent Colors */
+    --color-accent: #F59E0B; /* warm amber for encouraging actions */
+    --color-accent-foreground: #1F2937; /* dark text for contrast */
+    
+    /* State Colors */
+    --color-destructive: #EF4444; /* clear red for crisis situations */
+    --color-destructive-foreground: #FFFFFF; /* white for contrast */
+    --color-success: #10B981; /* positive green for progress indicators */
+    --color-success-foreground: #FFFFFF; /* white for contrast */
+    --color-warning: #F59E0B; /* amber for non-critical notifications */
+    --color-warning-foreground: #1F2937; /* dark text for contrast */
+    --color-error: #EF4444; /* clear red for critical alerts */
+    --color-error-foreground: #FFFFFF; /* white for contrast */
+    
+    /* Surface Colors */
+    --color-surface: #F8FAFC; /* subtle blue-gray for elevation */
+    --color-surface-foreground: #1F2937; /* near-black with blue undertones */
+    
+    /* Text Colors */
+    --color-text-primary: #1F2937; /* near-black with blue undertones */
+    --color-text-secondary: #6B7280; /* medium gray for hierarchy */
+    
+    /* Breathing Animation Variables */
+    --breathing-scale-min: 0.98;
+    --breathing-scale-max: 1.02;
+    --breathing-duration: 4s;
+    
+    /* Transition Variables */
+    --transition-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-duration-fast: 200ms;
+    --transition-duration-normal: 300ms;
+    --transition-duration-slow: 1.5s;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Breathing Animation for Primary Actions */
+  @keyframes breathing {
+    0%, 100% {
+      transform: scale(var(--breathing-scale-min));
+    }
+    50% {
+      transform: scale(var(--breathing-scale-max));
+    }
+  }
+  
+  .breathing-animation {
+    animation: breathing var(--breathing-duration) ease-in-out infinite;
+  }
+  
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .breathing-animation {
+      animation: none;
+    }
+    
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Ambient Gradients */
+  .ambient-gradient {
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+  }
+  
+  .ambient-gradient-secondary {
+    background: radial-gradient(circle at center, rgba(5, 150, 105, 0.05) 0%, transparent 70%);
+  }
+  
+  .ambient-gradient-accent {
+    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+  }
+  
+  /* Skeleton Loading Animation */
+  @keyframes skeleton-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  .skeleton-pulse {
+    animation: skeleton-pulse var(--transition-duration-slow) ease-in-out infinite;
+  }
+  
+  /* Focus Styles for Accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  /* Crisis Alert Styles */
+  .crisis-alert {
+    @apply bg-destructive text-destructive-foreground;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+  }
+  
+  /* Therapeutic Spacing */
+  .therapeutic-spacing {
+    @apply space-y-4;
+  }
+  
+  /* Gentle Elevation */
+  .gentle-elevation {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+  
+  .gentle-elevation-hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.05);
+  }
+}
